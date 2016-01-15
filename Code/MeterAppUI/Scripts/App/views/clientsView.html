@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Clients";
+}
+<div ng-controller="adminController">
+    <a ng-click="AddClient()">Create new client</a>
+    <table class="table">
+
+        <tr>
+            <th>UserName</th>
+            <th>Password</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+        <tr data-ng-repeat="client in users">
+            <td>{{ client.UserName }}</td>
+            <td>{{ client.PasswordHash }}</td>
+            <td>{{ client.FirstName + client.LastName }}</td>
+            <td>{{ client.Email }}</td>
+            <td>
+                <a href="javascript:" data-ng-click="EditClient(client)">Edit</a>|
+                <a href="javascript:" data-ng-click="DetailsClient(client)">Details</a>|
+                <a href="javascript:" data-ng-click="DeleteClient(client)">Delete</a>
+            </td>
+
+        </tr>
+    </table>
+</div>

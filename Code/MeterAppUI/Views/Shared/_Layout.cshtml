@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" data-ng-app="MeterApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/font-awesome.min.CSS" rel="stylesheet" />
+    @*<link href="~/Content/Angular.css" rel="stylesheet" />*@
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+  
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <!--<div class="overlay"></div>-->
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <li><a href="/Admin/index">Clients</a></li>
+                <li><a href="/Admin/projects">Projects</a></li>
+                <li><a href="/Admin/Developers">Developers</a></li>
+                <li><a href="#/reports">Reports</a></li>
+                <li><a href="#/messages">Messages</a></li>
+            </ul>
+            <ul class="nav sidebar-nav menu">
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </nav> <!-- /#sidebar-wrapper -->
+
+        <div class="desktop">
+            <div class="container">
+                <div class="row">
+                    <div class="navigation">
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <ul>
+                                <li class="logo"><a href="index.html"><img class="img-responsive" src="~/Images/logo.png" alt="LOGO" /></a></li>
+                                <!--<li><a href="#">Find Work</a></li>
+                                <li><a href="#">My Jobs</a></li>
+                                <li><a href="#">Reports</a></li>
+                                <li><a href="#">Messages</a></li>
+                                </ul>-->
+                            </ul>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <ul class="right_sidebar pull-right">
+                                <li><a href="#"><i class="fa fa-bell-o"></i></a></li>
+                                <li><a href="#"><!--<span class="circle"><img class="img-responsive" src="images/profile-img.jpg" alt="profile-img" /></span>--><span style="color:#007ed3;">Sanuj Gandhi</span> </a></li>
+                                <li>
+                                    <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="fa fa-angle-down"></i></a>
+                                    <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-cog"></i> Settings</a>
+                                            <li><a href="#"><i class="fa fa-sign-out"></i> Logout</a>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div><!--container-->
+            <div class="clearfix"></div>
+            <div class="navigation nav_bg navbar-lower" role="navigation">
+                <div class="container">
+                    <ul>
+                        <li><a href="/Admin/index">Clients</a></li>
+                        <li><a href="/Admin/projects">Projects</a></li>
+                        <li><a href="/Admin/Developers">Developers</a></li>
+                        <li><a href="#/reports">Reports</a></li>
+                        <li><a href="#/messages">Messages</a></li>
+                    </ul>
+                </div><!--container-->
+            </div>
+        </div><!--desktop-->
+
+        <div class="header-mobile">
+            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
+            </button>
+            <div class="sidebar-brand">
+                <a href="index.html">
+                    <img class="img-responsive" src="~/Images/mobile-logo.png" alt="LOGO" />
+                </a>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="content-area">
+                <!-- Example row of columns -->
+                <div class="container">
+                    @RenderBody()
+                    <hr />
+                </div>
+            </div>
+            <footer>
+                <div class="container">
+                    <div style="text-align: center;">
+                        <div class="footer_icon">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                        <p>© 2015 Aqua soft.</p>
+                    </div>
+                </div>
+            </footer><!--end-of-footer-->
+
+        </div><!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/layout.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/App/app.js"></script>
+    <script src="~/Scripts/App/services/clientsServices.js"></script>
+    <script src="~/Scripts/App/controllers/adminController.js"></script>
+    <script src="~/Scripts/App/directives/ValidPasswordCheck.js"></script>
+    <script src="~/Scripts/angular-ui-router-min.js"></script>
+    <script src="~/Scripts/multi-select-min.js"></script>
+    <link href="~/Content/multiselect-min.css" rel="stylesheet" />
+</body>
+</html>

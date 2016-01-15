@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{64186DB3-3B5D-402A-9598-FFDA8C1BDBE6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MeterAppBal</RootNamespace>
+    <AssemblyName>MeterAppBal</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interfaces\IDeveloper_SkillBal.cs" />
+    <Compile Include="Interfaces\IFileUploadBal.cs" />
+    <Compile Include="Interfaces\IGlobalCodeBal.cs" />
+    <Compile Include="Interfaces\IGlobalCodeCategoryBal.cs" />
+    <Compile Include="Interfaces\IMessagesBal.cs" />
+    <Compile Include="Interfaces\IModuleBal.cs" />
+    <Compile Include="Interfaces\IDeveloper_ModuleBal.cs" />
+    <Compile Include="Interfaces\IProjectBal.cs" />
+    <Compile Include="Interfaces\IProject_SkillBal.cs" />
+    <Compile Include="Interfaces\IProject_TechnologyBal.cs" />
+    <Compile Include="Interfaces\IScreenShotsBal.cs" />
+    <Compile Include="Interfaces\IWorkLogsBal.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BaseBal.cs" />
+    <Compile Include="Services\Developer_SkillBal.cs" />
+    <Compile Include="Services\FileUploadBal.cs" />
+    <Compile Include="Services\GlobalCodeBal.cs" />
+    <Compile Include="Services\GlobalCodeCategoryBal.cs" />
+    <Compile Include="Services\MessagesBal.cs" />
+    <Compile Include="Services\ModuleBal.cs" />
+    <Compile Include="Services\Developer_ModuleBal.cs" />
+    <Compile Include="Services\ProjectBal.cs" />
+    <Compile Include="Services\Project_SkillBal.cs" />
+    <Compile Include="Services\Project_TechnologyBal.cs" />
+    <Compile Include="Services\ScreenShotsBal.cs" />
+    <Compile Include="Services\WorkLogsBal.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MeterAppDal\MeterAppDal.csproj">
+      <Project>{057fb75a-39bb-46b6-87b5-ca1ac8e89b58}</Project>
+      <Name>MeterAppDal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MeterAppEntity\MeterAppEntity.csproj">
+      <Project>{d6eb0c30-208a-4888-a520-85cc622c6dfa}</Project>
+      <Name>MeterAppEntity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

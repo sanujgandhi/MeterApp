@@ -1,0 +1,110 @@
+﻿@{
+    ViewBag.Title = "Clients";
+}
+
+<style>
+    .red {
+        border: solid 1px red;
+    }
+</style>
+
+<div ng-controller="adminController" data-ng-init="init('2')">
+    <div data-ng-show="usersList">
+        <a href="javascript:" ng-click="AddUserBtn()">Create new client</a>
+        <table class="table">
+            <tr>
+                <th>UserName</th>
+                <th>Password</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+            <tr data-ng-repeat="client in users">
+                <td>{{ client.UserName }}</td>
+                <td>{{ client.PasswordHash }}</td>
+                <td>{{ client.FirstName + client.LastName }}</td>
+                <td>{{ client.Email }}</td>
+                <td>
+                    <a href="javascript:" ng-model="isDisabled" data-ng-click="EditClient(client)">Edit</a>|
+                    <a href="javascript:" data-ng-click="DetailsClient(client)">Details</a>|
+                    <a href="javascript:" data-ng-click="DeleteUser(client,$index)">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    @* This is the form for Add new Client and Update old Client *@
+    <div ng-show="userDiv">
+        @*<form name="userForm" ng-submit="submitUserForm(userForm.$valid)" novalidate>*@
+        <form name="userForm" novalidate>
+            <h2 class="col-sm-12">{{ Action }} Client</h2>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="FirstName" name="FirstName" placeholder="First Name" required />
+                    <div ng-show="userForm.$submitted || userForm.FirstName.$touched">
+                        <span class="text-danger" ng-show="userForm.FirstName.$error.required">required</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="LastName" name="LastName" placeholder="Last Name" required />
+                    <div ng-show="userForm.$submitted || userForm.LastName.$touched">
+                        <span class="text-danger" ng-show="userForm.LastName.$error.required">required</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" ng-model="Email" name="Email" placeholder="Email" required />
+                    <div ng-show="userForm.$submitted || userForm.Email.$touched">
+                        <span class="text-danger" ng-show="userForm.Email.$error.required">required</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="Address" name="Address" placeholder="Address" required />
+                    <div ng-show="userForm.$submitted || userForm.Address.$touched">
+                        <span class="text-danger" ng-show="userForm.Address.$error.required">required</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="PhoneNumber" name="PhoneNumber" placeholder="Phone Number" required />
+                    @*<span class="error"> error message here </span>*@
+                </div>
+            </div><!--end-col-sm-6-->
+            <div class="col-sm-6">
+
+                <div class="form-group">
+                    <input type="text" ng-disabled="isDisabled" ng-minlength="5" ng-maxlength="20" ng-pattern="/^[A-z][A-z0-9]*$/" class="form-control" ng-model="UserName" name="UserName" placeholder="User Name" required />
+                    <span class="text-danger" ng-show="!userForm.UserName.$error.minLength && !userForm.UserName.$error.maxLength && userForm.UserName.$error.pattern && userForm.UserName.$dirty">Must start with a letter, and contain letters &amp; numbers only.</span>
+                    <span class="text-danger" ng-show="!userForm.username.$error.required && (userForm.UserName.$error.minlength || userForm.UserName.$error.maxlength) && userForm.UserName.$dirty && !userForm.UserName.$error.pattern ">Username must be between 5 and 20 characters.</span>
+                    <div ng-show="userForm.$submitted || userForm.UserName.$touched">
+                        <span class="text-danger" ng-show="userForm.UserName.$error.required">required</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @*<input type="password" id="password1" ng-minlength="8" ng-maxlength="20" class="form-control" ng-model="Password" name="Password" placeholder="Password" required />*@
+                    <input type="password" ng-minlength="8" ng-maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" class="form-control" ng-model="Password" name="Password" placeholder="Password" required />
+                    <span class="text-danger" ng-show="!userForm.Password.$error.required && (userForm.Password.$error.minlength || userForm.Password.$error.maxlength) && userForm.Password.$dirty">Passwords must be between 8 and 20 characters.</span>
+                    <span class="text-danger" ng-show="!userForm.Password.$error.required && !userForm.Password.$error.minlength && !userForm.Password.$error.maxlength && userForm.Password.$error.pattern && userForm.Password.$dirty">Must contain one lower &amp; uppercase letter, and one non-alpha character (a number or a symbol.)</span>
+                    <div ng-show="userForm.$submitted || userForm.Password.$touched">
+                        <span class="text-danger" ng-show="userForm.Password.$error.required">required</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @*<input type="password" id="password2" class="form-control" ng-model="ConfirmPassword" name="ConfirmPassword" placeholder="ConfirmPassword" required />*@
+                    @*<input type="password" id="password2" class="form-control" ng-model="ConfirmPassword" name="ConfirmPassword" placeholder="ConfirmPassword" valid-password-c="password" required />*@
+                    @*<span class="text-danger" ng-show="!userForm.ConfirmPassword.$error.required && userForm.ConfirmPassword.$error.noMatch && userForm.ConfirmPassword.$dirty">Passwords do not match.</span>
+                        <div ng-show="userForm.$submitted || userForm.ConfirmPassword.$touched">
+                            <span class="text-danger" ng-show="userForm.ConfirmPassword.$error.required">required</span>
+                        </div>*@
+                </div>
+            </div>
+            <!--end-col-sm-6-->
+            <div class="clearfix"></div>
+
+            <div class="col-sm-12">
+                <button type="submit" name="submit" class="btn btn-danger" ng-click="AddUpdateUser(2)" ng-disabled="userForm.$invalid">Submit</button>
+                @*<button type="submit" name="submit" class="btn btn-danger" ng-click="AddUpdateUser(2)">Submit</button>*@
+                <button type="button" id="submit" name="submit" ng-click="ShowUserList()" class="btn btn-primary pull-right">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+</div>
