@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(MeterAppUI.Startup))]
+[assembly: OwinStartup(typeof(MeterAppUI.Startup), "Configuration")]
 
 namespace MeterAppUI
 {

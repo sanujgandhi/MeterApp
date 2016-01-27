@@ -6,12 +6,12 @@ using System.Web.Mvc;
 
 namespace MeterAppUI.Controllers
 {
+    [Authorize(Roles = "Client,Admin,Developer")]
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-
             return View();
         }
     }

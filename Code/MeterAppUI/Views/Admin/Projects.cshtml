@@ -15,12 +15,12 @@
             @Html.DisplayNameFor(model => model.ProjectName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ClientId)
+            @Html.DisplayName("Client Name")
         </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>*@
         <th>
             @Html.DisplayNameFor(model => model.StartDate)
         </th>
@@ -30,8 +30,15 @@
         <th>
             @Html.DisplayNameFor(model => model.ClosureDate)
         </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.ProjectLink)
+            </th>*@
+
         <th>
-            @Html.DisplayNameFor(model => model.ProjectLink)
+            @Html.DisplayName("Developers")
+        </th>
+        <th>
+            @Html.DisplayName("Technologies")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Status)
@@ -45,35 +52,14 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CreatedBy)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UpdatedBy)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UpdatedDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DeletedBy)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DeletedDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsDeleted)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ClientId)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.ProjectName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Description)
+                    @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
                 </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.StartDate)
                 </td>
@@ -83,16 +69,23 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.ClosureDate)
                 </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.ProjectLink)
+                    </td>*@
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProjectLink)
+                    @Html.ActionLink("Assign Developer", "AssignProjectDevelopers", new { id = item.ProjectId })
+                </td>
+                <td>
+                    @Html.ActionLink("Add Technologies", "CreateProjectTechnologies", new { id = item.ProjectId })
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ProjectId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ProjectId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ProjectId })
+                    @Html.ActionLink("Edit", "EditProject", new { id = item.ProjectId }) |
+                    @Html.ActionLink("Details", "DetailsProject", new { id = item.ProjectId }) |
+                    @Html.ActionLink("Delete", "DeleteProject", new { id = item.ProjectId },
+                 new { onclick = "return confirm('Are you sure you wish to delete this project?');" })
                 </td>
             </tr>
         }

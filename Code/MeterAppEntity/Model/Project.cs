@@ -11,10 +11,15 @@ namespace MeterAppEntity.Model
 {
     public class Project : BaseModel
     {
+        public Project()
+        {
+            
+        }
+
         [Key]
         public int ProjectId { get; set; }
         [Required]
-        public int ClientId { get; set; }
+        public string ClientId { get; set; }
         [Required]
         [DisplayName("Project Name")]
         public string ProjectName { get; set; }
@@ -28,5 +33,10 @@ namespace MeterAppEntity.Model
         [DisplayName("Project Url")]
         public string ProjectLink { get; set; }
         public bool Status { get; set; }
+
+        [ForeignKey("ClientId")]
+        public virtual ApplicationUser ApplicationUser { get; set; }
+        [ForeignKey("ProjectId")]
+        public virtual List<Project_Technology> Project_Technology { get; set; }
     }
 }

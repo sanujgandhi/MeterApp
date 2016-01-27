@@ -18,3 +18,8 @@ D:\MeterApp\Code\MeterAppResource\bin\Debug\MeterAppResource.pdb
 D:\MeterApp\Code\MeterAppResource\obj\Debug\MeterAppResource.csprojResolveAssemblyReference.cache
 D:\MeterApp\Code\MeterAppResource\obj\Debug\MeterAppResource.dll
 D:\MeterApp\Code\MeterAppResource\obj\Debug\MeterAppResource.pdb
+D:\Sanuj\Projects\MeterApp\Code\MeterAppResource\bin\Debug\MeterAppResource.dll
+D:\Sanuj\Projects\MeterApp\Code\MeterAppResource\bin\Debug\MeterAppResource.pdb
+D:\Sanuj\Projects\MeterApp\Code\MeterAppResource\obj\Debug\MeterAppResource.csprojResolveAssemblyReference.cache
+D:\Sanuj\Projects\MeterApp\Code\MeterAppResource\obj\Debug\MeterAppResource.dll
+D:\Sanuj\Projects\MeterApp\Code\MeterAppResource\obj\Debug\MeterAppResource.pdb

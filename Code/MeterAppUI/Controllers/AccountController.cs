@@ -17,6 +17,8 @@ using MeterAppUI.Models;
 using MeterAppUI.Providers;
 using MeterAppUI.Results;
 using MeterAppDal;
+using MeterAppEntity.Model;
+using System.Web.Routing;
 
 namespace MeterAppUI.Controllers
 {
@@ -29,6 +31,35 @@ namespace MeterAppUI.Controllers
 
         public AccountController()
         {
+        }
+
+        [AllowAnonymous]
+        public async Task<IHttpActionResult> Login(UserLoginInfoViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await UserManager.FindAsync(model.LoginProvider, model.ProviderKey);
+                if (user != null)
+                {
+                    await SignInAsync(user, true);
+                    return Json(user);
+                }
+
+                else
+                {
+                    ModelState.AddModelError("", "Invalid username or password.");
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+            return null;
+        }
+
+        private async Task SignInAsync(ApplicationUser user, bool isPersistent)
+        {
+            Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+            var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            Authentication.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
         }
 
         public AccountController(ApplicationUserManager userManager,
@@ -68,9 +99,11 @@ namespace MeterAppUI.Controllers
         }
 
         // POST api/Account/Logout
+        [AllowAnonymous]
         [Route("Logout")]
         public IHttpActionResult Logout()
         {
+            
             Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
             return Ok();
         }
@@ -126,7 +159,7 @@ namespace MeterAppUI.Controllers
 
             IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
-            
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -259,14 +292,14 @@ namespace MeterAppUI.Controllers
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                
-                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
-                    OAuthDefaults.AuthenticationType);
-                ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
-                    CookieAuthenticationDefaults.AuthenticationType);
 
-                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
-                Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
+                // ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                //    OAuthDefaults.AuthenticationType);
+                //ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                //    CookieAuthenticationDefaults.AuthenticationType);
+
+                //AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
+                //Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
             }
             else
             {
@@ -307,7 +340,7 @@ namespace MeterAppUI.Controllers
                     {
                         provider = description.AuthenticationType,
                         response_type = "token",
-                        client_id = Startup.PublicClientId,
+                        //client_id = Startup.PublicClientId,
                         redirect_uri = new Uri(Request.RequestUri, returnUrl).AbsoluteUri,
                         state = state
                     }),
@@ -329,7 +362,7 @@ namespace MeterAppUI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
@@ -369,7 +402,7 @@ namespace MeterAppUI.Controllers
             result = await UserManager.AddLoginAsync(user.Id, info.Login);
             if (!result.Succeeded)
             {
-                return GetErrorResult(result); 
+                return GetErrorResult(result);
             }
             return Ok();
         }

@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 
-<html lang="en" data-ng-app="MeterApp">
+<html lang="en" ng-app="MeterApp">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,20 +9,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-
     <title>@ViewBag.Title</title>
     <link href="~/Content/font-awesome.min.CSS" rel="stylesheet" />
     @*<link href="~/Content/Angular.css" rel="stylesheet" />*@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
-  
-
 </head>
 
 <body>
-    <div id="wrapper">
+    <div id="wrapper" ng-controller="layoutController">
         <!--<div class="overlay"></div>-->
+        @*Mobile*@
         <!-- Sidebar -->
         <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
             <ul class="nav sidebar-nav">
@@ -55,13 +52,13 @@
                         <div class="col-md-4 col-sm-4 col-xs-12">
                             <ul class="right_sidebar pull-right">
                                 <li><a href="#"><i class="fa fa-bell-o"></i></a></li>
-                                <li><a href="#"><!--<span class="circle"><img class="img-responsive" src="images/profile-img.jpg" alt="profile-img" /></span>--><span style="color:#007ed3;">Sanuj Gandhi</span> </a></li>
+                                <li><a href="#"><!--<span class="circle"><img class="img-responsive" src="images/profile-img.jpg" alt="profile-img" /></span>--><span style="color:#007ed3;">@Session["UserName"]</span> </a></li>
                                 <li>
                                     <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="fa fa-angle-down"></i></a>
                                     <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
                                         <ul>
                                             <li><a href="#"><i class="fa fa-cog"></i> Settings</a>
-                                            <li><a href="#"><i class="fa fa-sign-out"></i> Logout</a>
+                                            <li><a href="javascript:" ng-init="2" ng-click="Logout()"><i class="fa fa-sign-out"></i>{{ LogoutName }}</a>
                                         </ul>
                                     </div>
                                 </li>
@@ -74,11 +71,28 @@
             <div class="navigation nav_bg navbar-lower" role="navigation">
                 <div class="container">
                     <ul>
+                     @if (Request.IsAuthenticated && User.IsInRole("Client"))
+                     {
+                        <li><a href="/Admin/projects">Projects</a></li>
+                        <li><a href="#/reports">Reports</a></li>
+                        <li><a href="/Client/Index">Messages</a></li>
+                     }
+                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                     {
                         <li><a href="/Admin/index">Clients</a></li>
                         <li><a href="/Admin/projects">Projects</a></li>
                         <li><a href="/Admin/Developers">Developers</a></li>
                         <li><a href="#/reports">Reports</a></li>
-                        <li><a href="#/messages">Messages</a></li>
+                        <li><a href="/Client/Index">Messages</a></li>
+                     }
+                     
+                        @if (Request.IsAuthenticated && User.IsInRole("Developer") )
+                        {
+                            <li><a href="/Admin/projects">Projects</a></li>
+                            <li><a href="#/reports">Reports</a></li>
+                            <li><a href="#/messages">Messages</a></li>
+                        }
+                      
                     </ul>
                 </div><!--container-->
             </div>
@@ -141,5 +155,25 @@
     <script src="~/Scripts/angular-ui-router-min.js"></script>
     <script src="~/Scripts/multi-select-min.js"></script>
     <link href="~/Content/multiselect-min.css" rel="stylesheet" />
+    <script src="~/Scripts/App/controllers/layoutController.js"></script>
+    <script src="~/Scripts/App/controllers/clientMessagesController.js"></script>
+    <script src="~/Scripts/App/services/loginServices.js"></script>
+    <script src="~/Scripts/App/controllers/AccountController.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+    <script src="~/Scripts/toastr.min.js"></script>
+
+    <script type="text/javascript">
+
+    $(function() {
+        var success = @((TempData["notice"] != null).ToString().ToLower());
+
+        if (success == true) {
+            toastr.options = {
+                "positionClass": "toast-top-full-width"
+            }
+            toastr.error("You are not authorized to view this page");
+        }
+    });
+    </script>
 </body>
 </html>

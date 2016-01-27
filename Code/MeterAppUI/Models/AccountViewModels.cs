@@ -39,5 +39,8 @@ namespace MeterAppUI.Models
         public string LoginProvider { get; set; }
 
         public string ProviderKey { get; set; }
+
+        public bool IsPersistant { get; set; }
     }
+
 }

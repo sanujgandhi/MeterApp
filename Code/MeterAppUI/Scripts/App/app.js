@@ -8,3 +8,4 @@
 //    });
 //    $routeProvider.otherwise('error');
 //});
+//var login = angular.module("loginApp", []);

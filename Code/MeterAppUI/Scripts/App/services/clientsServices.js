@@ -1,7 +1,6 @@
 ﻿app.factory('clientsServices', function ($http) {
 
     var factory = {};
-
     factory.getUsers = function (id) {
         return $http.get("/Admin/GetUsers?id=" + id).error(function (status,data) { alert("Ajax Error " + status); });
     }
@@ -37,5 +36,16 @@
         return $http.get("/Admin/GetDeveloperSkillsById?id=" + id).error(function (status, data) { alert("Ajax Error" + status); });
     }
 
+    factory.GetDeveloperSkillsById = function (id) {
+        return $http.get("/Admin/GetDeveloperSkillsById?id=" + id).error(function (status, data) { alert("Ajax Error" + status); });
+    }
+
+    factory.GetClientMessages = function (id) {
+        return $http.get("/Client/Messages?id=" + id).error(function (status, data) { alert("Ajax Error" + status); });
+    }
+
+    factory.GetDeveloperByProjectId = function (id) {
+        return $http.get("/Client/GetDevelopersByProjectId?id=" + id).error(function (status, data) { alert("Ajax Error" + status); });
+    }
     return factory;
 });

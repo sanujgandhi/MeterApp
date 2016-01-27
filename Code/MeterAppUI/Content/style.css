@@ -111,11 +111,12 @@ footer p{color:#fff; font-size:14px; margin-top:20px;}
 
 
 
+
 /****** LOGIN MODAL ******/
-.loginmodal-container {padding: 30px; max-width: 350px; width: 100% !important; background-color: #F7F7F7; margin: 0 auto; border-radius: 2px; box-shadow:0 0 2px rgba(0, 0, 0, 0.3); overflow: hidden; margin-bottom:40px;}
+.loginmodal-container {padding: 30px; max-width: 350px; width: 100% !important; background-color: #F7F7F7; margin:160px auto 40px; border-radius: 2px; box-shadow:0 0 2px rgba(0, 0, 0, 0.3); overflow: hidden; }
 .loginmodal-container h1 { text-align: center; font-size: 1.8em; font-family: roboto;}
 .loginmodal-container input[type=submit] { width: 100%; display: block; margin-bottom: 10px; position: relative;}
-.loginmodal-container input { height: 44px; font-size: 16px; width: 100%; margin-bottom: 10px; -webkit-appearance: none;
+.loginmodal-container input[type=text], input[type=password] { height: 44px; font-size: 16px; width: 100%; margin-bottom: 10px; -webkit-appearance: none;
   background: #fff; border: 1px solid #d9d9d9; border-top: 1px solid #c0c0c0; /* border-radius: 2px; */ padding: 0 8px; box-sizing: border-box;  -moz-box-sizing: border-box;}
 .loginmodal-container input[type=text]:hover, input[type=password]:hover { border: 1px solid #b9b9b9; border-top: 1px solid #a0a0a0; -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);}
 .loginmodal { text-align: center; font-size: 14px; font-family: 'Arial', sans-serif; font-weight: 700; height: 36px; padding: 0 8px;/* border-radius: 3px; */
@@ -146,3 +147,43 @@ form.form-horizontal.form-main .form-group{ margin-left: 0;margin-right: 0;}
 }
 
 
+/**********23/1/2016  messages of client*********/
+.margin50{margin-top:50px;}
+.margin20{margin-top:20px;}
+.side_menu{background:#f7f7f7; border:1px solid #eee; padding:10px;}
+.nav.nav-pills.nav-stacked.side_menu a{border-radius:0;}
+.nav.nav-pills.nav-stacked.side_menu > li {  border-bottom: 1px solid #eee;}
+.navbar-static-top {margin-bottom:20px;}
+.nav-pills > li a:hover{ color: #ffffff; background-color: #428bca;}
+
+
+.task_detail h1 {border-bottom: 1px solid #ddd; display: inline-block; margin:-20px 0 20px 0;  padding:0 0 0.414em;  width: 100%; }
+.task_detail h1 span{border-bottom: 1px solid #007ed3;bottom:0px; font-size: 18px;  padding-bottom: 0.914em;  position: relative;  text-transform: uppercase;}
+.search-bar{position:relative; margin-bottom:15px;}
+.search-bar .glyphicon {left: auto; position: absolute; right: 12px; top: 10px;}
+
+/*/ Tabs panel /*/
+.tabbable-panel {border:1px solid #eee; padding: 10px; display:inline-block; width:100%;}
+
+/*/ Default mode /*/
+.tabbable-line > .nav-tabs {border: none; margin: 0px;}
+.tabbable-line > .nav-tabs > li {margin-right: 2px;}
+.tabbable-line > .nav-tabs > li > a {  border: 0;  margin-right: 0; color: #737373;}
+.tabbable-line > .nav-tabs > li > a > i {color: #a6a6a6;}
+.tabbable-line > .nav-tabs > li.open, .tabbable-line > .nav-tabs > li:hover { border-bottom: 4px solid #a7d1ea;}
+.tabbable-line > .nav-tabs > li.open > a, .tabbable-line > .nav-tabs > li:hover > a { border: 0; background: none !important; color: #333333;}
+.tabbable-line > .nav-tabs > li.open > a > i, .tabbable-line > .nav-tabs > li:hover > a > i {color: #a6a6a6;}
+.tabbable-line > .nav-tabs > li.open .dropdown-menu, .tabbable-line > .nav-tabs > li:hover .dropdown-menu {margin-top: 0px;}
+.tabbable-line > .nav-tabs > li.active {border-bottom: 4px solid #007ed3 ; position: relative;}
+.tabbable-line > .nav-tabs > li.active > a {border: 0; color: #333333;}
+.tabbable-line > .nav-tabs > li.active > a > i { color: #404040;}
+.tabbable-line > .tab-content { margin-top: -3px; background-color: #fff; border: 0; border-top: 1px solid #eee; padding: 15px 0;}
+.portlet .tabbable-line > .tab-content { padding-bottom: 0;}
+
+/*/ Below tabs mode /*/
+.tabbable-line.tabs-below > .nav-tabs > li { border-top: 4px solid transparent;}
+.tabbable-line.tabs-below > .nav-tabs > li > a { margin-top: 0;}
+.tabbable-line.tabs-below > .nav-tabs > li:hover { border-bottom: 0; border-top: 4px solid #fbcdcf;}
+.tabbable-line.tabs-below > .nav-tabs > li.active {margin-bottom: -2px; border-bottom: 0; border-top: 4px solid #f3565d;}
+.tabbable-line.tabs-below > .tab-content { margin-top: -10px; border-top: 0; border-bottom: 1px solid #eee; padding-bottom: 15px;}
+.tab-pane textarea {height:120px;}

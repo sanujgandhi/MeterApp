@@ -13,7 +13,7 @@ namespace MeterAppEntity.Model
     {
         [Key]
         [Column(Order = 0)]
-        public int DeveloperId { get; set; }
+        public string DeveloperId { get; set; }
         [Key]
         [Column(Order = 1)]
         public int ModuleId { get; set; }

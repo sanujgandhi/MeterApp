@@ -16,11 +16,29 @@ namespace MeterAppUI.Controllers
     {
         protected IGlobalCodeBal iglobalCodeBal;
         protected IDeveloper_SkillBal ideveloperSkills;
+        protected IProjectBal IProjectBal;
+        protected IModuleBal IModuleBal;
 
         public BaseController()
         {
-            this.iglobalCodeBal = new GlobalCodeBal();
-            this.ideveloperSkills = new Developer_SkillBal();
+            if (iglobalCodeBal == null)
+            {
+                iglobalCodeBal = new GlobalCodeBal();
+            }
+            if (IProjectBal == null)
+            {
+                IProjectBal = new ProjectBal();
+            }
+
+            if (ideveloperSkills == null)
+            {
+                ideveloperSkills = new Developer_SkillBal();
+            }
+
+            if (IModuleBal == null)
+            {
+                IModuleBal = new ModuleBal();
+            }
         }
 
         //GlobalCodeBal globalCodeBal = new GlobalCodeBal();
@@ -32,7 +50,7 @@ namespace MeterAppUI.Controllers
 
         //IGlobalCodeBal globalCodeBal = new GlobalCodeBal();
 
-        
+
         private ApplicationUserManager _userManager;
 
         protected ApplicationUserManager UserManager

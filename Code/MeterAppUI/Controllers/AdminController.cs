@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using MeterAppBal.Common;
 using MeterAppBal.Interfaces;
 using MeterAppBal.Services;
 using MeterAppDal;
@@ -12,11 +15,28 @@ using MeterAppEntity.Model;
 using MeterAppUI.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using System.Net.Http;
+using MeterAppUI.Models;
+using System.Net.Http.Headers;
 
 namespace MeterAppUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : BaseController
     {
+        //public ActionResult Test(UserLoginInfoViewModel model)
+        //{
+        //    var uri = "http://localhost:12288/api/Account/login";
+        //    using(HttpClient httpClient = new HttpClient() )
+        //    {
+        //        httpClient.BaseAddress =new Uri(uri);
+        //        httpClient.DefaultRequestHeaders.Accept.Clear();
+        //        httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        //        return null;
+        //    }
+        //}
+
+
         #region Users
         // GET: Clients View
         public ActionResult Index()
@@ -65,7 +85,7 @@ namespace MeterAppUI.Controllers
             }
             if (model.Role == "3")
             {
-                var assignedRole = UserManager.AddToRoleAsync(user.Id, "Developer");
+                var assignedRole = UserManager.AddToRole(user.Id, "Developer");
                 var newskills = new List<Developer_Skill>();
                 foreach (var items in model.SkillList)
                 {
@@ -181,17 +201,35 @@ namespace MeterAppUI.Controllers
         #endregion
 
         #region Project
+        // Show the list of all Projects to the Admin
         public ActionResult Projects()
         {
-            return View();
+            var list = IProjectBal.GetAll();
+            return View(list);
         }
 
+        /// <summary>
+        /// Show the Create form for the Project
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult CreateProject()
         {
-            return View();
+            using (MeterContext context = new MeterContext())
+            {
+                SelectList selectList = new SelectList(context.Users.Where(u => u.Roles.Any(r => r.RoleId == "2")).ToList(), "Id", "UserName");
+                //SelectList technologiesList = new SelectList(Technologies);
+                ViewData["ClientsList"] = selectList;
+                //ViewData["TechnologyList"] = ExtensionMethods.ToSelectList(typeof (TechnologiesEnum));
+                return View();
+            }
         }
 
+        /// <summary>
+        /// Submit the Project form to the database
+        /// </summary>
+        /// <param name="modelProject"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult CreateProject(Project modelProject)
         {
@@ -199,12 +237,29 @@ namespace MeterAppUI.Controllers
             {
                 return View(modelProject);
             }
-            using (var projectBal = new ProjectBal())
-            {
-                projectBal.Create(modelProject);
-            }
+            IProjectBal.Create(modelProject);
             return View();
         }
+
+        //
+        public ActionResult EditProject(int id)
+        {
+            return View();
+        }
+
+        public ActionResult DeleteProject(int id)
+        {
+            var result = IProjectBal.Delete(id);
+            return RedirectToAction("Projects");
+        }
+
+        public ActionResult DetailsProject(int id)
+        {
+            var result = IProjectBal.GetById(id);
+            return View(result);
+        }
+
+
         #endregion
 
 

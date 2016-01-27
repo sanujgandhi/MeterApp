@@ -12,8 +12,8 @@ namespace MeterAppEntity.Model
     {
         [Key]
         public int FileUploadId { get; set; }
-        public int ClientId { get; set; }
-        public int DeveloperId { get; set; }
+        public string ClientId { get; set; }
+        public string DeveloperId { get; set; }
         public int ModuleId { get; set; }
         public string FileName { get; set; }
         public string FilePath { get; set; }

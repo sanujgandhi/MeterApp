@@ -13,6 +13,7 @@ namespace MeterAppBal.Interfaces
         Project GetById(int id);
         Project Create(Project objProject);
         Project Update(Project objProject);
-        Project Delete(Project objProject);
+        int? Delete(int id);
+        List<Project> GetProjectsByClientId(string clientId);
     }
 }

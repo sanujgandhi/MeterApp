@@ -15,7 +15,9 @@ namespace MeterAppEntity.Model
         public int ModuleId { get; set; }
         public int ProjectId { get; set; }
         public int TechnologyId { get; set; }
-        public string ModuleName { get; set; }
+        public string DeveloperId { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
 
     }
 }

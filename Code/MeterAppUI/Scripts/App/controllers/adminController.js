@@ -1,5 +1,4 @@
 ﻿app.controller('adminController', function ($scope, clientsServices) {
-    $scope.users = [];
     $scope.usersList = true;
     $scope.userDiv = false;
     // This function get the id from the 
@@ -114,4 +113,10 @@
         $scope.developerSkillsTextArea += " ," + value;
         $scope.developerSkills.delete(value);
     }
+
+    $scope.Logout = function () {
+        alert("Done");
+    }
+    $scope.LogoutName = "Logout";
+
 });

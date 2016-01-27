@@ -72,7 +72,6 @@ D:\Sanuj\Projects\MeterApp\Code\MeterAppDal\bin\Debug\EntityFramework.dll
 D:\Sanuj\Projects\MeterApp\Code\MeterAppDal\bin\Debug\EntityFramework.SqlServer.dll
 D:\Sanuj\Projects\MeterApp\Code\MeterAppDal\bin\Debug\MeterAppEntity.dll
 D:\Sanuj\Projects\MeterApp\Code\MeterAppDal\bin\Debug\Microsoft.AspNet.Identity.Core.dll
-D:\Sanuj\Projects\MeterApp\Code\MeterAppDal\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
 D:\Sanuj\Projects\MeterApp\Code\MeterAppDal\bin\Debug\MeterAppEntity.pdb
 D:\Sanuj\Projects\MeterApp\Code\MeterAppDal\bin\Debug\EntityFramework.xml
 D:\Sanuj\Projects\MeterApp\Code\MeterAppDal\bin\Debug\EntityFramework.SqlServer.xml
@@ -83,3 +82,5 @@ D:\Sanuj\Projects\MeterApp\Code\MeterAppDal\obj\Debug\MeterAppDal.Migrations.ini
 D:\Sanuj\Projects\MeterApp\Code\MeterAppDal\obj\Debug\MeterAppDal.csproj.GenerateResource.Cache
 D:\Sanuj\Projects\MeterApp\Code\MeterAppDal\obj\Debug\MeterAppDal.dll
 D:\Sanuj\Projects\MeterApp\Code\MeterAppDal\obj\Debug\MeterAppDal.pdb
+D:\Sanuj\Projects\MeterApp\Code\MeterAppDal\obj\Debug\MeterAppDal.Migrations.InitialCreate2.resources
+D:\Sanuj\Projects\MeterApp\Code\MeterAppDal\obj\Debug\MeterAppDal.Migrations.initialcreate3.resources

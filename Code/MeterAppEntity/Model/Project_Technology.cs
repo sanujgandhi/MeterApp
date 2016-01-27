@@ -16,6 +16,5 @@ namespace MeterAppEntity.Model
         [Key]
         [Column(Order = 1)]
         public int TechnologyId { get; set; }
-        
     }
 }

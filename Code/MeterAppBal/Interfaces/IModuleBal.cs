@@ -14,5 +14,7 @@ namespace MeterAppBal.Interfaces
         Module Create(Module objModule);
         Module Update(Module objModule);
         Module Delete(Module objModule);
+        List<string> GetdevelopersIdByProjectId(int projectId);
+        List<string> GetModulesNameByProjectIdAndDeveloperId(int projectId, string developerId);
     }
 }
