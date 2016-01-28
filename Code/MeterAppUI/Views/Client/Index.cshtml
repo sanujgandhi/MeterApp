@@ -29,6 +29,7 @@
 @if (Model != null)
 {
     <body ng-controller="clientMessagesController" ng-init="init(@Newtonsoft.Json.JsonConvert.SerializeObject(Model.ClientsProject))">
+
         <!-- Main -->
         <div class="container">
             <div class="row">
@@ -37,7 +38,7 @@
                         <!-- Left -->
                         <ul class="nav nav-pills nav-stacked side_menu">
                             <li class="search-bar"><input class="form-control" ng-model="projectListSearch" type="text" value="Search Project" /> <span class="glyphicon glyphicon-search"></span></li>
-                            <li ng-repeat="x in projectList | filter:projectListSearch" ng-model="projectList"><a ng-click="taskToDeveloper(x)" data-toggle="tab">{{x.ProjectName}}</a></li>
+                            <li ng-repeat="x in projectList | filter:projectListSearch" ng-model="projectList" ng-class="{active: $index == 0}"><a ng-click="taskToDeveloper(x)" data-toggle="tab">{{x.ProjectName}}</a></li>
                         </ul>
                     </div><!-- /span-3 -->
                     <div class="col-md-9 col-sm-9 col-xs-12" ng-show="developerList">
@@ -48,40 +49,38 @@
                             <div class="tabbable-panel">
                                 <div class="tabbable-line">
                                     <ul class="nav nav-tabs ">
-                                        <li ng-repeat="developer in DevelopersList"><a ng-click="SelectedDeveloper(developer)" data-toggle="tab">{{developer.FirstName}} </a></li>
+                                        <li ng-repeat="developer in DevelopersList" ng-model="developerList" ng-class="{active: $index == 0}"><a ng-click="SelectedDeveloper(developer)" data-toggle="tab">{{developer.FirstName}} </a></li>
                                     </ul>
-                                    <div ng-show="moduleslist" class="tab-content">
-                                        <div class="tab-pane active" id="tab_default_1">
-                                            <form accept-charset="UTF-8" action="/" class="require-validation margin20" id="payment-form" method="post">
+                                    <form class="require-validation margin20" id="payment-form">
+                                        <div ng-show="moduleslist" class="tab-content">
+                                            <div class="tab-pane active" id="tab_default_1">
                                                 <div class='form-row col-md-6'>
-                                                    <div  class='form-group card required'>
+                                                    <div class='form-group card required'>
                                                         <label class='control-label' ng-model="media.FirstName">Modules</label>
                                                         <select>
-                                                            <option ng-repeat="module in media.Module">
+                                                            <option ng-model="developerName" ng-repeat="module in media.Module">
                                                                 {{module}}
                                                             </option>
                                                         </select>
                                                     </div>
                                                 </div>
-                                              
                                                 <div class="clearfix"></div>
                                                 <div class='form-row col-md-12'>
-                                                    <textarea class="form-control"></textarea>
+                                                    <textarea class="form-control" ng-model="textArea" placeholder="Add text here..."></textarea>
                                                 </div>
                                                 <div class='form-row col-md-2 pull-right'>
                                                     <div class='form-group margin20'>
-                                                        <button class='form-control btn btn-primary' type='submit'> SEND →</button>
+                                                        <button class='btn btn-primary' ng-click="uploadFile()"> SEND →</button>
                                                     </div>
                                                 </div>
                                                 <div class='form-row col-md-4'>
-
+                                                    @*<input type="file" file-model="myFile" required>*@
+                                                    <input type="file" file-model="myFile" />
+                                                    @*<input id="fileupload" type="file" ng-model="files" onchange="angular.element(this).scope().selectFileforUpload(this.files)" name="files" />*@
                                                 </div>
-                                            </form>
-
-
-                                        </div><!--tab-pane-->
-                                       
-                                    </div>
+                                            </div><!--tab-pane-->
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -91,6 +90,7 @@
                 </div>
             </div>
         </div>
+
         <!-- /Main -->
         <!-- Bootstrap core JavaScript
         ================================================== -->
@@ -100,3 +100,11 @@
     </body>
 }
 </html>
+
+@*<script src="~/Scripts/FileAPI.js"></script>
+<script src="~/Scripts/ng-file-upload-all.min.js"></script>
+<script src="~/Scripts/ng-file-upload-shim.min.js"></script>
+<script src="~/Scripts/ng-file-upload.min.js"></script>*@
+<script src="~/Scripts/App/directives/fileModel.js"></script>
+<script src="~/Scripts/App/services/clientsServices.js"></script>
+<script src="~/Scripts/App/controllers/clientMessagesController.js"></script>

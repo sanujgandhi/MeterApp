@@ -47,5 +47,6 @@
     factory.GetDeveloperByProjectId = function (id) {
         return $http.get("/Client/GetDevelopersByProjectId?id=" + id).error(function (status, data) { alert("Ajax Error" + status); });
     }
+
     return factory;
 });

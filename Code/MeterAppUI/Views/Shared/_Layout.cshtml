@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 
-<html lang="en" ng-app="MeterApp">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,6 +14,19 @@
     @*<link href="~/Content/Angular.css" rel="stylesheet" />*@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/layout.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-ui-router-min.js"></script>
+    <script src="~/Scripts/multi-select-min.js"></script>
+    <link href="~/Content/multiselect-min.css" rel="stylesheet" />
+    <script src="~/Scripts/App/app.js"></script>
+    <script src="~/Scripts/App/services/loginServices.js"></script>
+    <script src="~/Scripts/App/controllers/layoutController.js"></script>
+
+
 </head>
 
 <body>
@@ -71,28 +84,28 @@
             <div class="navigation nav_bg navbar-lower" role="navigation">
                 <div class="container">
                     <ul>
-                     @if (Request.IsAuthenticated && User.IsInRole("Client"))
-                     {
-                        <li><a href="/Admin/projects">Projects</a></li>
-                        <li><a href="#/reports">Reports</a></li>
-                        <li><a href="/Client/Index">Messages</a></li>
-                     }
-                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-                     {
-                        <li><a href="/Admin/index">Clients</a></li>
-                        <li><a href="/Admin/projects">Projects</a></li>
-                        <li><a href="/Admin/Developers">Developers</a></li>
-                        <li><a href="#/reports">Reports</a></li>
-                        <li><a href="/Client/Index">Messages</a></li>
-                     }
-                     
-                        @if (Request.IsAuthenticated && User.IsInRole("Developer") )
+                        @if (Request.IsAuthenticated && User.IsInRole("Client"))
+                        {
+                            <li><a href="/Admin/projects">Projects</a></li>
+                            <li><a href="#/reports">Reports</a></li>
+                            <li><a href="/Client/Index">Messages</a></li>
+                        }
+                        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li><a href="/Admin/index">Clients</a></li>
+                            <li><a href="/Admin/projects">Projects</a></li>
+                            <li><a href="/Admin/Developers">Developers</a></li>
+                            <li><a href="#/reports">Reports</a></li>
+                            <li><a href="/Client/Index">Messages</a></li>
+                        }
+
+                        @if (Request.IsAuthenticated && User.IsInRole("Developer"))
                         {
                             <li><a href="/Admin/projects">Projects</a></li>
                             <li><a href="#/reports">Reports</a></li>
                             <li><a href="#/messages">Messages</a></li>
                         }
-                      
+
                     </ul>
                 </div><!--container-->
             </div>
@@ -143,37 +156,33 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-    <script src="~/Scripts/layout.js"></script>
-    <script src="~/Scripts/angular.js"></script>
-    <script src="~/Scripts/App/app.js"></script>
-    <script src="~/Scripts/App/services/clientsServices.js"></script>
-    <script src="~/Scripts/App/controllers/adminController.js"></script>
-    <script src="~/Scripts/App/directives/ValidPasswordCheck.js"></script>
-    <script src="~/Scripts/angular-ui-router-min.js"></script>
-    <script src="~/Scripts/multi-select-min.js"></script>
-    <link href="~/Content/multiselect-min.css" rel="stylesheet" />
-    <script src="~/Scripts/App/controllers/layoutController.js"></script>
-    <script src="~/Scripts/App/controllers/clientMessagesController.js"></script>
-    <script src="~/Scripts/App/services/loginServices.js"></script>
-    <script src="~/Scripts/App/controllers/AccountController.js"></script>
-    <link href="~/Content/toastr.min.css" rel="stylesheet" />
-    <script src="~/Scripts/toastr.min.js"></script>
+    @*<script src="~/Scripts/App/services/clientsServices.js"></script>
+        <script src="~/Scripts/App/controllers/adminController.js"></script>
+        <script src="~/Scripts/App/directives/ValidPasswordCheck.js"></script>
+        <script src="~/Scripts/angular-ui-router-min.js"></script>
+        <script src="~/Scripts/multi-select-min.js"></script>
+        <link href="~/Content/multiselect-min.css" rel="stylesheet" />
+        <script src="~/Scripts/App/controllers/layoutController.js"></script>*@
+    @*<script src="~/Scripts/App/directives/fileupload.js"></script>
+        <script src="~/Scripts/App/controllers/clientMessagesController.js"></script>*@
+    @*<script src="~/Scripts/App/services/loginServices.js"></script>
+        <script src="~/Scripts/App/controllers/AccountController.js"></script>
+        <link href="~/Content/toastr.min.css" rel="stylesheet" />
+        <script src="~/Scripts/toastr.min.js"></script>*@
+
 
     <script type="text/javascript">
 
-    $(function() {
-        var success = @((TempData["notice"] != null).ToString().ToLower());
+        $(function() {
+            var success = @((TempData["notice"] != null).ToString().ToLower());
 
-        if (success == true) {
-            toastr.options = {
-                "positionClass": "toast-top-full-width"
+            if (success == true) {
+                toastr.options = {
+                    "positionClass": "toast-top-full-width"
+                }
+                toastr.error("You are not authorized to view this page");
             }
-            toastr.error("You are not authorized to view this page");
-        }
-    });
+        });
     </script>
 </body>
 </html>

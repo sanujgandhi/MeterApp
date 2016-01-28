@@ -54,5 +54,12 @@ namespace MeterAppUI.Controllers
 
             return Json(developersList, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult fileupload(object data)
+        {
+            return null;
+        }
+
+
     }
 }
