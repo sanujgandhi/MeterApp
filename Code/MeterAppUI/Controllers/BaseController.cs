@@ -17,7 +17,11 @@ namespace MeterAppUI.Controllers
         protected IGlobalCodeBal iglobalCodeBal;
         protected IDeveloper_SkillBal ideveloperSkills;
         protected IProjectBal IProjectBal;
-        protected IModuleBal IModuleBal;
+        protected IProject_ModuleBal IModuleBal;
+        protected IFileUploadBal IFileUploadBal;
+        protected IMessagesBal IMessagesBal;
+        protected IProject_DeveloperBal IProject_DeveloperBal;
+        protected IProject_TechnologyBal IProject_TechnologyBal;
 
         public BaseController()
         {
@@ -37,7 +41,23 @@ namespace MeterAppUI.Controllers
 
             if (IModuleBal == null)
             {
-                IModuleBal = new ModuleBal();
+                IModuleBal = new Project_ModuleBal();
+            }
+            if (IFileUploadBal == null)
+            {
+                IFileUploadBal = new FileUploadBal();
+            }
+            if (IMessagesBal == null)
+            {
+                IMessagesBal = new MessagesBal();
+            }
+            if (IProject_DeveloperBal == null)
+            {
+                IProject_DeveloperBal = new Project_DeveloperBal();
+            }
+            if (IProject_TechnologyBal == null)
+            {
+                IProject_TechnologyBal = new Project_TechnologyBal();
             }
         }
 

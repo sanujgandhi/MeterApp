@@ -14,5 +14,6 @@ namespace MeterAppBal.Interfaces
         Messages Create(Messages objMessages);
         Messages Update(Messages objMessages);
         Messages Delete(Messages objMessages);
+        List<Messages> GetMessageBySenderIdReceiverIdandProjectId(string senderId, string receiverId, int projectId);
     }
 }

@@ -81,7 +81,7 @@ namespace MeterAppUI.Controllers
             }
             if (model.Role == "2")
             {
-                var assignedRole = UserManager.AddToRoleAsync(user.Id, "Client");
+                var assignedRole = UserManager.AddToRoles(user.Id, "Client");
             }
             if (model.Role == "3")
             {
@@ -201,6 +201,15 @@ namespace MeterAppUI.Controllers
         #endregion
 
         #region Project
+
+        public ActionResult GetTechnologies()
+        {
+            var enumList = Enum.GetValues(typeof(TechnologiesEnum)).Cast<object>().ToDictionary(enumValue => enumValue.ToString(), enumValue => (int)enumValue);
+            var list = enumList.Select(pair => new EnumViewModel { Id = pair.Value, Name = pair.Key }).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+
         // Show the list of all Projects to the Admin
         public ActionResult Projects()
         {
@@ -218,9 +227,7 @@ namespace MeterAppUI.Controllers
             using (MeterContext context = new MeterContext())
             {
                 SelectList selectList = new SelectList(context.Users.Where(u => u.Roles.Any(r => r.RoleId == "2")).ToList(), "Id", "UserName");
-                //SelectList technologiesList = new SelectList(Technologies);
                 ViewData["ClientsList"] = selectList;
-                //ViewData["TechnologyList"] = ExtensionMethods.ToSelectList(typeof (TechnologiesEnum));
                 return View();
             }
         }
@@ -238,7 +245,7 @@ namespace MeterAppUI.Controllers
                 return View(modelProject);
             }
             IProjectBal.Create(modelProject);
-            return View();
+            return RedirectToAction("Projects");
         }
 
         //
@@ -259,6 +266,58 @@ namespace MeterAppUI.Controllers
             return View(result);
         }
 
+        [HttpGet]
+        public ActionResult CreateProjectTechnologies(int id)
+        {
+            var vm = new ProjectViewModel();
+            vm.Project = IProjectBal.GetById(id);
+            return View(vm);
+        }
+        [HttpPost]
+        public ActionResult CreateProjectTechnologies(List<EnumViewModel> technologies, int projectId)
+        {
+            var listProjectTechnologies = technologies.Select(item => new Project_Technology
+            {
+                ProjectId = projectId,
+                TechnologyId = item.Id
+            }).ToList();
+            var result = IProject_TechnologyBal.Create(listProjectTechnologies);
+            return Json("Success");
+        }
+
+        [HttpGet]
+        public ActionResult AssignProjectDevelopers(int id)
+        {
+            var project = IProjectBal.GetById(id);
+            using (var context = new MeterContext())
+            {
+                var selectList = new SelectList(context.Users.Where(u => u.Roles.Any(r => r.RoleId == "3")).ToList(), "Id", "UserName");
+                ViewData["DeveloperList"] = selectList;
+                return View(project);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AssignProjectDevelopers(FormCollection form, int ProjectId)
+        {
+            var data = form["Developers"];
+            var developers = data.Split(Convert.ToChar(","));
+            return null;
+        }
+
+        [HttpGet]
+        public ActionResult AddModules(int id)
+        {
+            //var technologiesId = ProjectTechnologyBal.GetByProjectId(id);
+            //IEnumerable<SelectList>
+            //if (technologies == null)
+            //{
+            //    ViewBag.Technologies = null;
+            //}
+            ////var techSelectList = new SelectList(technologies,"TechnologyId","")
+            //ViewBag.Technologies = technologies;
+            return View();
+        }
 
         #endregion
 

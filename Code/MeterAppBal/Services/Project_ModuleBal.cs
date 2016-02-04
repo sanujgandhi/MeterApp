@@ -4,36 +4,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MeterAppBal.Interfaces;
+using MeterAppEntity.Model;
 
 namespace MeterAppBal.Services
 {
-    public class Project_SkillBal:BaseBal, IProject_SkillBal
+    public class Project_ModuleBal:BaseBal, IProject_ModuleBal
     {
         
 
-        public MeterAppEntity.Model.Project_Skill GetById(int id)
+        public MeterAppEntity.Model.Project_Module GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public MeterAppEntity.Model.Project_Skill Create(MeterAppEntity.Model.Project_Skill objProjectSkill)
+        public MeterAppEntity.Model.Project_Module Create(MeterAppEntity.Model.Project_Module objModule)
         {
             throw new NotImplementedException();
         }
 
-        public MeterAppEntity.Model.Project_Skill Update(MeterAppEntity.Model.Project_Skill objProjectSkill)
+        public MeterAppEntity.Model.Project_Module Update(MeterAppEntity.Model.Project_Module objModule)
         {
             throw new NotImplementedException();
         }
 
-        public MeterAppEntity.Model.Project_Skill Delete(MeterAppEntity.Model.Project_Skill objProjectSkill)
+        public MeterAppEntity.Model.Project_Module Delete(MeterAppEntity.Model.Project_Module objModule)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<MeterAppEntity.Model.Project_Skill> GetAll()
+        public IEnumerable<MeterAppEntity.Model.Project_Module> GetAll()
         {
             throw new NotImplementedException();
         }
+
+     
     }
 }

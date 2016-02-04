@@ -11,10 +11,6 @@ namespace MeterAppEntity.Model
 {
     public class Project : BaseModel
     {
-        public Project()
-        {
-            
-        }
 
         [Key]
         public int ProjectId { get; set; }

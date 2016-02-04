@@ -16,6 +16,8 @@ namespace MeterAppEntity.Model
         public string SenderId { get; set; }
         public string RecieverId { get; set; }
         public string Message { get; set; }
+        public string FileName { get; set; }
+        public string MessageType { get; set; }
         public DateTime TimeStamp { get; set; }
 
     }

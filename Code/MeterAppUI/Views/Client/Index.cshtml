@@ -36,57 +36,94 @@
                 <div class="development-msg margin50">
                     <div class="col-md-3 col-sm-3 col-xs-12" ng-show="projectList">
                         <!-- Left -->
-                        <ul class="nav nav-pills nav-stacked side_menu">
+                        <ul class="nav nav-pills nav-stacked side_menu" ng-model="projectlistinul">
                             <li class="search-bar"><input class="form-control" ng-model="projectListSearch" type="text" value="Search Project" /> <span class="glyphicon glyphicon-search"></span></li>
-                            <li ng-repeat="x in projectList | filter:projectListSearch" ng-model="projectList" ng-class="{active: $index == 0}"><a ng-click="taskToDeveloper(x)" data-toggle="tab">{{x.ProjectName}}</a></li>
+                            <li ng-repeat="x in projectList | filter:projectListSearch" ng-model="projectList.ClientId" ng-class="{active: $index == 0}"><a ng-click="taskToDeveloper(x)" data-toggle="tab">{{x.ProjectName}}</a></li>
                         </ul>
                     </div><!-- /span-3 -->
-                    <div class="col-md-9 col-sm-9 col-xs-12" ng-show="developerList">
-                        <div class="task_detail">
-                            <!-- Right -->
-                            <h1><span>Task Detail</span></h1>
-                            <div class="clearfix"></div>
-                            <div class="tabbable-panel">
-                                <div class="tabbable-line">
-                                    <ul class="nav nav-tabs ">
-                                        <li ng-repeat="developer in DevelopersList" ng-model="developerList" ng-class="{active: $index == 0}"><a ng-click="SelectedDeveloper(developer)" data-toggle="tab">{{developer.FirstName}} </a></li>
-                                    </ul>
-                                    <form class="require-validation margin20" id="payment-form">
-                                        <div ng-show="moduleslist" class="tab-content">
-                                            <div class="tab-pane active" id="tab_default_1">
-                                                <div class='form-row col-md-6'>
-                                                    <div class='form-group card required'>
-                                                        <label class='control-label' ng-model="media.FirstName">Modules</label>
-                                                        <select>
-                                                            <option ng-model="developerName" ng-repeat="module in media.Module">
-                                                                {{module}}
-                                                            </option>
-                                                        </select>
+                </div>
+                <div class="col-md-9 col-sm-9 col-xs-12" ng-show="developerList">
+                    <div class="task_detail">
+                        <!-- Right -->
+                        <h1><span>Task Detail</span></h1>
+                        <div class="clearfix"></div>
+                        <div class="tabbable-panel">
+                            <div class="tabbable-line">
+                                <ul class="nav nav-tabs" ng-model="developerListInUl">
+                                    <li ng-repeat="developer in DevelopersList" value="{{developer.UserId}}" ng-class="{active: $index == 0}"><a ng-click="SelectedDeveloper(developer)" data-toggle="tab">{{developer.FirstName}} </a></li>
+                                </ul>
+                                <form class="require-validation margin20" id="payment-form">
+                                    <div ng-show="moduleslist" class="tab-content">
+                                        <div class="chat-box-div">
+                                            <div class="chat-box-head">
+                                                Chat
+                                                <div class="btn-group pull-right padding_none">
+                                                    <button aria-expanded="false" data-toggle="dropdown" class="btn btn-info dropdown-toggle" type="button"> <span class="fa fa-cog"></span> <span class="sr-only">Toggle Dropdown</span> </button>
+                                                    <ul role="menu" class="dropdown-menu">
+                                                        <li><a href="#"><span class="fa fa-map-marker"></span>&nbsp;Invisible</a></li>
+                                                        <li><a href="#"><span class="fa fa-comments-o"></span>&nbsp;Online</a></li>
+                                                        <li><a href="#"><span class="fa fa-lock"></span>&nbsp;Busy</a></li>
+                                                        <li class="divider"></li>
+                                                        <li><a href="#"><span class="fa fa-circle-o-notch"></span>&nbsp;Logout</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="panel-body chat-box-main" ng-repeat="data in messageList">
+
+                                                <!--start--online_one_right_img-->
+                                                <div class="online_one_right_img" ng-if="data.SenderId=='0a6a5ac9-4322-4690-8ca0-3cde158e39e9' && data.MessageType=='text'">
+                                                    <div class=" chat-box-left">
+                                                        {{data.Message}}
                                                     </div>
+                                                    <div class="chat-box-name-right"> <img class=" img-circle" alt="bootstrap Chat box user image" src="~/Images/user.gif"> -  Justine Goliyad </div>
+                                                    <div class="clear"></div>
                                                 </div>
-                                                <div class="clearfix"></div>
-                                                <div class='form-row col-md-12'>
-                                                    <textarea class="form-control" ng-model="textArea" placeholder="Add text here..."></textarea>
-                                                </div>
-                                                <div class='form-row col-md-2 pull-right'>
-                                                    <div class='form-group margin20'>
-                                                        <button class='btn btn-primary' ng-click="uploadFile()"> SEND →</button>
+                                                <div class="online_one_right_img" ng-if="data.MessageType!='text'">
+                                                    <div class=" chat-box-left">
+                                                        @{
+                                                            var url = Url.Action("DownloadFile", "Client", new { @fileName = "{{fileName = data.MessageType}}" });
+                                                             url = HttpUtility.UrlDecode(url);
+                                                        }
+                                                        <a data-ng-href="@url">Download</a>
+                                                        <img src="~/Images/excel.png"  />
+                                                        @*@Html.ActionLink("Download", "DownloadFile", new { fileName =  });*@
                                                     </div>
+                                                    <div class="chat-box-name-right"> <img class=" img-circle" alt="bootstrap Chat box user image" src="~/Images/user.gif"> -  Justine Goliyad </div>
+                                                    <div class="clear"></div>
                                                 </div>
-                                                <div class='form-row col-md-4'>
-                                                    @*<input type="file" file-model="myFile" required>*@
-                                                    <input type="file" file-model="myFile" />
-                                                    @*<input id="fileupload" type="file" ng-model="files" onchange="angular.element(this).scope().selectFileforUpload(this.files)" name="files" />*@
+                                                <!--end---online_one_right_img-->
+                                                <!--start--online_one_left_img-->
+                                                @*<div class="online_one_left_img">
+                                                        <div class=" chat-box-right">
+                                                        </div>
+                                                        <div class="chat-box-name-right"> <img class="img-circle" alt="bootstrap Chat box user image" src="~/Images/user.gif"> - Romin Royeelin </div>
+                                                        <div class="clear"></div>
+                                                    </div>*@
+                                                <!--end---online_one_left_img-->
+                                            </div>
+                                            <div class="chat-box-footer">
+                                                <div class="input-group">
+                                                    <input type="text" ng-model="textArea" placeholder="Enter Text Here..." class="form-control">
+                                                    <span class="input-group-btn">
+                                                        <button type="button" ng-click="uploadFile()" class="btn btn-info">SEND →</button>
+                                                    </span>
                                                 </div>
-                                            </div><!--tab-pane-->
+                                              
+                                                <div>
+                                                    @*<input type="button" ng-click="ShowMessages()" value="download" />*@
+                                                </div>
+                                            </div>
                                         </div>
-                                    </form>
-                                </div>
+                                        <div class='form-row col-md-4'>
+                                            <input type="file" file-model="fileupload" />
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        <!--/task_detail->
-                        </div><!--/col-span-9-->
                     </div>
+                    <!--/task_detail->
+                    </div><!--/col-span-9-->
                 </div>
             </div>
         </div>
@@ -102,9 +139,9 @@
 </html>
 
 @*<script src="~/Scripts/FileAPI.js"></script>
-<script src="~/Scripts/ng-file-upload-all.min.js"></script>
-<script src="~/Scripts/ng-file-upload-shim.min.js"></script>
-<script src="~/Scripts/ng-file-upload.min.js"></script>*@
+    <script src="~/Scripts/ng-file-upload-all.min.js"></script>
+    <script src="~/Scripts/ng-file-upload-shim.min.js"></script>
+    <script src="~/Scripts/ng-file-upload.min.js"></script>*@
 <script src="~/Scripts/App/directives/fileModel.js"></script>
 <script src="~/Scripts/App/services/clientsServices.js"></script>
 <script src="~/Scripts/App/controllers/clientMessagesController.js"></script>

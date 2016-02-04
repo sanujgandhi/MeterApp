@@ -4,14 +4,16 @@
         $scope.developerList = false;
         $scope.moduleslist = false;
         $scope.projectList = projets;
+        $scope.step = "/FileUploads/0a6a5ac9-4322-4690-8ca0-3cde158e39e9_1231dcfe-3bb5-4a04-b345-c06d6d5c23d2_2016-02-01_17-16-24-PM_images.jpg";
         $scope.taskToDeveloper(projets[0]);
     }
 
-    $scope.taskToDeveloper = function (projectName)
+    $scope.taskToDeveloper = function (project)
     {
         $scope.developerList = true;
         $scope.moduleslist = false;
-        var data = clientsServices.GetDeveloperByProjectId(projectName.ProjectId);
+        $scope.seletedProjectss = project;
+        var data = clientsServices.GetDeveloperByProjectId(project.ProjectId);
         data.then(function (users) {
             $scope.DevelopersList = users.data;
             $scope.SelectedDeveloper(users.data[0]);
@@ -23,27 +25,14 @@
         $scope.developerList = true;
         $scope.moduleslist = true;
         $scope.media = developer;
+        $scope.muduleSelected = $scope.media.Module[0];
+        $scope.ShowMessages();
     }
 
     //$scope.submit = function () {
     //    alert(JSON.stringify($scope.myfiles.files));
     //}
 
-    $scope.submit = function (data) {
-        var a = $("#fileupload").file;
-        alert(JSON.stringify(a));
-        if ($scope.IsFormValid && $scope.IsFileValid) {
-            FileUploadService.UploadFile($scope.SelectedFileForUpload, $scope.FileDescription).then(function (d) {
-                alert(d.Message);
-                ClearForm();
-            }, function (e) {
-                alert(e);
-            });
-        }
-        else {
-            $scope.Message = "All the fields are required.";
-        }
-    };
 
     //$scope.selectFileforUpload = function (file) {
     //    var a=$("#fileupload")[0].file;
@@ -58,15 +47,46 @@
     //    if (file != null) {
     //        $scope.upload(file)
     //    }
-    //};
-    
-    $scope.uploadFile = function () {
-        var file = $scope.myFile;
-        alert(file);
-        console.log('file is ');
-        console.dir(file);
+     //};
+     $scope.ShowMessages=function()
+     {
+         var projectId = $scope.muduleSelected.ProjectId;
+         var developerId = $scope.media.UserId;
+         var clientId = $scope.seletedProjectss.ClientId;
+         var message = {
+             SenderId: clientId,
+             ReceiverID: developerId,
+             ProjectId: projectId
+         };
+         var data = clientsServices.ShowMessages(message);
+         data.then(function (response) {
+             $scope.messageList = response.data.messages;
+             $scope.fileName=response.data.filename;
+             alert(JSON.stringify($scope.messageList));
+         }, function () { alert("Error in getting records") });
+     }
 
-        var uploadUrl = "/fileUpload";
-        fileUpload.uploadFileToUrl(file, uploadUrl);
+     $scope.uploadFile = function () {
+        var file = $scope.fileupload;
+        var moduleId = $scope.muduleSelected.ModuleId;
+        var projectId = $scope.muduleSelected.ProjectId;
+        var developerId = $scope.media.UserId;
+        var clientId = $scope.seletedProjectss.ClientId;
+        var description = $scope.textArea;
+        var message = {
+            ClientId: clientId,
+            DeveloperId: developerId,
+            ModuleId: moduleId,
+            Description: description,
+            ProjectId:projectId
+        };
+        var uploadUrl = "/Client/fileupload";
+        clientsServices.uploadFileToUrl(file, uploadUrl,message);
     };
+
+    $scope.downloadFile = function (filepath) {
+        alert(filepath);
+        //  alert(JSON.stringify(developer.Module));
+        clientsServices.DownloadFile(filepath);
+    }
     }]);

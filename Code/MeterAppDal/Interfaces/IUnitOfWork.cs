@@ -9,7 +9,7 @@ namespace MeterAppDal.Interfaces
 {
     public interface IUnitOfWork
     {
-        IGenericRepository<Module> Module { get; set; } 
+        IGenericRepository<Project_Module> Module { get; set; } 
 
 
     }

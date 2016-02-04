@@ -54,16 +54,15 @@
   <ItemGroup>
     <Compile Include="Model\ApplicationUser.cs" />
     <Compile Include="Model\BaseModel.cs" />
-    <Compile Include="Model\Developer_Module.cs" />
+    <Compile Include="Model\ProjectAssignments.cs" />
+    <Compile Include="Model\Project_Developer.cs" />
     <Compile Include="Model\Developer_Skill.cs" />
     <Compile Include="Model\FileUpload.cs" />
     <Compile Include="Model\GlobalCode.cs" />
     <Compile Include="Model\GlobalCodeCategory.cs" />
     <Compile Include="Model\Messages.cs" />
-    <Compile Include="Model\Module.cs" />
-    <Compile Include="Model\Module_Developer_Project.cs" />
+    <Compile Include="Model\Project_Module.cs" />
     <Compile Include="Model\Project.cs" />
-    <Compile Include="Model\Project_Skill.cs" />
     <Compile Include="Model\Project_Technology.cs" />
     <Compile Include="Model\Screenshots.cs" />
     <Compile Include="Model\WorkLogs.cs" />

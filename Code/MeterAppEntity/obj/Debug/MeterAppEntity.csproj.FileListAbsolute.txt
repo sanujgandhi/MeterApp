@@ -51,7 +51,5 @@ D:\Sanuj\Projects\MeterApp\Code\MeterAppEntity\bin\Debug\Microsoft.AspNet.Identi
 D:\Sanuj\Projects\MeterApp\Code\MeterAppEntity\bin\Debug\EntityFramework.xml
 D:\Sanuj\Projects\MeterApp\Code\MeterAppEntity\bin\Debug\EntityFramework.SqlServer.xml
 D:\Sanuj\Projects\MeterApp\Code\MeterAppEntity\bin\Debug\Microsoft.AspNet.Identity.Core.xml
-D:\Sanuj\Projects\MeterApp\Code\MeterAppEntity\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
-D:\Sanuj\Projects\MeterApp\Code\MeterAppEntity\obj\Debug\MeterAppEntity.csprojResolveAssemblyReference.cache
 D:\Sanuj\Projects\MeterApp\Code\MeterAppEntity\obj\Debug\MeterAppEntity.dll
 D:\Sanuj\Projects\MeterApp\Code\MeterAppEntity\obj\Debug\MeterAppEntity.pdb

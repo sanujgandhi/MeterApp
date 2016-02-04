@@ -1,7 +1,8 @@
 ﻿@{
     ViewBag.Title = "Clients";
 }
-
+<script src="~/Scripts/App/services/clientsServices.js"></script>
+<script src="~/Scripts/App/controllers/adminController.js"></script>
 <div ng-controller="adminController"  data-ng-init="init('3')">
     <div data-ng-show="usersList">
         <a href="javascript:" ng-click="AddUserBtn()">Create new Developer</a>

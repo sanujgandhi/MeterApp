@@ -88,10 +88,9 @@
     <Compile Include="Interfaces\IGlobalCodeBal.cs" />
     <Compile Include="Interfaces\IGlobalCodeCategoryBal.cs" />
     <Compile Include="Interfaces\IMessagesBal.cs" />
-    <Compile Include="Interfaces\IModuleBal.cs" />
-    <Compile Include="Interfaces\IDeveloper_ModuleBal.cs" />
+    <Compile Include="Interfaces\IProject_ModuleBal.cs" />
+    <Compile Include="Interfaces\IProject_DeveloperBal.cs" />
     <Compile Include="Interfaces\IProjectBal.cs" />
-    <Compile Include="Interfaces\IProject_SkillBal.cs" />
     <Compile Include="Interfaces\IProject_TechnologyBal.cs" />
     <Compile Include="Interfaces\IScreenShotsBal.cs" />
     <Compile Include="Interfaces\IWorkLogsBal.cs" />
@@ -102,10 +101,9 @@
     <Compile Include="Services\GlobalCodeBal.cs" />
     <Compile Include="Services\GlobalCodeCategoryBal.cs" />
     <Compile Include="Services\MessagesBal.cs" />
-    <Compile Include="Services\ModuleBal.cs" />
-    <Compile Include="Services\Developer_ModuleBal.cs" />
+    <Compile Include="Services\Project_ModuleBal.cs" />
+    <Compile Include="Services\Project_DeveloperBal.cs" />
     <Compile Include="Services\ProjectBal.cs" />
-    <Compile Include="Services\Project_SkillBal.cs" />
     <Compile Include="Services\Project_TechnologyBal.cs" />
     <Compile Include="Services\ScreenShotsBal.cs" />
     <Compile Include="Services\WorkLogsBal.cs" />

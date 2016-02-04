@@ -229,7 +229,10 @@
     <Compile Include="ViewModels\ClientViewModel.cs" />
     <Compile Include="ViewModels\DeveloperModule.cs" />
     <Compile Include="ViewModels\EnumViewModel.cs" />
+    <Compile Include="ViewModels\FileUploadViewModel.cs" />
+    <Compile Include="ViewModels\ListBoxViewModel.cs" />
     <Compile Include="ViewModels\ProjectViewModel.cs" />
+    <Compile Include="ViewModels\ShowMessageAndFileUploadViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +250,8 @@
     <Content Include="fonts\Simple-Line-Icons.dev.svg" />
     <Content Include="fonts\Simple-Line-Icons.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\css.png" />
+    <Content Include="Images\excel.png" />
     <Content Include="Images\logo-new.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\main-bg.jpg" />
@@ -254,6 +259,9 @@
     <Content Include="Images\profile-img.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\font-awesome.min.CSS" />
+    <Content Include="Images\text.png" />
+    <Content Include="Images\user.gif" />
+    <Content Include="Images\user.png" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular-ui-router-min.js" />
     <Content Include="Scripts\angular.js" />
@@ -354,9 +362,14 @@
     <Content Include="Views\Client\_Messages.cshtml" />
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Admin\CreateProjectTechnologies.cshtml" />
+    <Content Include="Views\Client\Reports.cshtml" />
+    <Content Include="Views\Admin\AssignProjectDevelopers.cshtml" />
+    <Content Include="Views\Admin\AddModules.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="downloads\" />
+    <Folder Include="FileUploads\" />
     <Folder Include="Scripts\App\filters\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>

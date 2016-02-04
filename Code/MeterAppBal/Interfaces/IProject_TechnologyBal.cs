@@ -12,8 +12,10 @@ namespace MeterAppBal.Interfaces
         IEnumerable<Project_Technology> GetAll();
         Project_Technology GetById(int id);
         Project_Technology Create(Project_Technology objProjectTechnology);
+        List<Project_Technology> Create(List<Project_Technology> objProjectTechnology);
         Project_Technology Update(Project_Technology objProjectTechnology);
         Project_Technology Delete(Project_Technology objProjectTechnology);
+        IEnumerable<Project_Technology> GetByProjectId(int id);
 
     }
 }

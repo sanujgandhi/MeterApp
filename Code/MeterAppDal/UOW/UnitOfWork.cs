@@ -29,7 +29,6 @@ namespace MeterAppDal.UOW
         //public IGenericRepository<Developer_Module> Developer_Module { get; set; }
         //public IGenericRepository<Developer_Skill> Developer_Skill { get; set; }
         //public IGenericRepository<Project> Project { get; set; }
-        //public IGenericRepository<Project_Skill> Project_Skill { get; set; }
         //public IGenericRepository<IdentityUser> UserRepository { get; set; }
         //public IGenericRepository<IdentityUserRole> UserRoleRepository { get; set; }
         //public IGenericRepository<IdentityRole> RoleRepository { get; set; }

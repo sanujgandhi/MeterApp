@@ -29,8 +29,8 @@
 
 </head>
 
-<body>
-    <div id="wrapper" ng-controller="layoutController">
+<body ng-app="MeterApp">
+    <div id="wrapper">
         <!--<div class="overlay"></div>-->
         @*Mobile*@
         <!-- Sidebar -->
@@ -48,7 +48,7 @@
             </ul>
         </nav> <!-- /#sidebar-wrapper -->
 
-        <div class="desktop">
+        <div class="desktop" ng-controller="layoutController">
             <div class="container">
                 <div class="row">
                     <div class="navigation">
@@ -87,7 +87,7 @@
                         @if (Request.IsAuthenticated && User.IsInRole("Client"))
                         {
                             <li><a href="/Admin/projects">Projects</a></li>
-                            <li><a href="#/reports">Reports</a></li>
+                            <li><a href="/Client/Reports">Reports</a></li>
                             <li><a href="/Client/Index">Messages</a></li>
                         }
                         @if (Request.IsAuthenticated && User.IsInRole("Admin"))
@@ -133,25 +133,25 @@
                     <hr />
                 </div>
             </div>
-            <footer>
-                <div class="container">
-                    <div style="text-align: center;">
-                        <div class="footer_icon">
-                            <ul>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            </ul>
-                        </div>
-                        <p>© 2015 Aqua soft.</p>
-                    </div>
-                </div>
-            </footer><!--end-of-footer-->
-
-        </div><!-- /#page-content-wrapper -->
+        </div>
 
     </div>
+    <footer>
+        <div class="container">
+            <div style="text-align: center;">
+                <div class="footer_icon">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    </ul>
+                </div>
+                <p>© 2015 Aqua soft.</p>
+            </div>
+        </div>
+    </footer><!--end-of-footer-->
+    <!-- /#page-content-wrapper -->
     <!-- /#wrapper -->
     <!-- Bootstrap core JavaScript
     ================================================== -->

@@ -12,7 +12,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MeterAppDal
 {
-    
+
     public class MeterContext : IdentityDbContext<ApplicationUser>
     {
         public MeterContext()
@@ -25,18 +25,18 @@ namespace MeterAppDal
         }
 
         #region To create all Dbset properties of model classes
-        public DbSet<Developer_Module> Developer_Module { get; set; }
+        public DbSet<Project_Developer> Developer_Module { get; set; }
         public DbSet<Developer_Skill> Developer_Skill { get; set; }
         public DbSet<FileUpload> FileUpload { get; set; }
         public DbSet<GlobalCode> GlobalCode { get; set; }
         public DbSet<GlobalCodeCategory> GlobalCodeCategory { get; set; }
         public DbSet<Messages> Messages { get; set; }
-        public DbSet<Module> Module { get; set; }
+        public DbSet<Project_Module> Module { get; set; }
         public DbSet<Project> Project { get; set; }
-        public DbSet<Project_Skill> Project_Skill { get; set; }
         public DbSet<Project_Technology> Project_Technology { get; set; }
         public DbSet<Screenshots> Screenshots { get; set; }
         public DbSet<WorkLogs> WorkLogs { get; set; }
+        public DbSet<ProjectAssignments> ProjectAssignments { get; set; }
         #endregion
 
         public static MeterContext Create()

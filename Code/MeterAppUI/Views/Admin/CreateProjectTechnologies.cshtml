@@ -12,10 +12,11 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal" ng-controller="projectTechnologiesController">
+    <div class="form-horizontal" ng-app="MeterApp" ng-controller="projectTechnologiesController">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+        <input type="hidden" ng-init="init(@Model.Project.ProjectId)" />
         <div class="form-group">
             @Html.LabelFor(model => model.Project.ProjectName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-8">
@@ -33,8 +34,10 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-8">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="button" ng-click="CreateProjectTechnologies();" value="Create" class="btn btn-primary" />
             </div>
         </div>
+        @Html.ActionLink("Back to list", "Projects", "", new { @Id = "backToProjects" })
     </div>
 }
+<script src="~/Scripts/App/controllers/projectController.js"></script>

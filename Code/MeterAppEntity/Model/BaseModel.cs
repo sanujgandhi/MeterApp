@@ -8,6 +8,11 @@ namespace MeterAppEntity.Model
 {
     public class BaseModel
     {
+        public BaseModel()
+        {
+            CreatedDate = DateTime.UtcNow;
+        }
+
         public int CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public int UpdatedBy { get; set; }
@@ -16,4 +21,5 @@ namespace MeterAppEntity.Model
         public DateTime? DeletedDate { get; set; }
         public bool? IsDeleted { get; set; }
     }
+
 }

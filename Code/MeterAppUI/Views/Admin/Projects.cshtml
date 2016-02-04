@@ -38,6 +38,9 @@
             @Html.DisplayName("Developers")
         </th>
         <th>
+            @Html.DisplayName("Modules")
+        </th>
+        <th>
             @Html.DisplayName("Technologies")
         </th>
         <th>
@@ -74,6 +77,9 @@
                     </td>*@
                 <td>
                     @Html.ActionLink("Assign Developer", "AssignProjectDevelopers", new { id = item.ProjectId })
+                </td>
+                <td>
+                    @Html.ActionLink("Add Modules", "AddModules", new { id = item.ProjectId })
                 </td>
                 <td>
                     @Html.ActionLink("Add Technologies", "CreateProjectTechnologies", new { id = item.ProjectId })
